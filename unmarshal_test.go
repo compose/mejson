@@ -2,10 +2,11 @@ package mejson
 
 import (
 	"encoding/json"
-	"labix.org/v2/mgo/bson"
 	"reflect"
 	"testing"
 	"time"
+
+	"gopkg.in/mgo.v2/bson"
 )
 
 func TestBson(t *testing.T) {
