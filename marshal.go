@@ -29,6 +29,8 @@ func Marshal(in interface{}) (interface{}, error) {
 		switch v := in.(type) {
 		case bson.M:
 			return marshalMap(v)
+		case map[string]interface{}:
+			return marshalMap(v)
 		case bson.D:
 			// todo write marshaller for doc to ensure serialization order
 			return marshalMap(v.Map())
@@ -43,7 +45,7 @@ func Marshal(in interface{}) (interface{}, error) {
 		case string, int, int64, bool, float64, uint32:
 			return v, nil
 		default:
-			fmt.Fprintf(os.Stderr, "unknown type: %T\n", v)
+			fmt.Fprintf(os.Stderr, "mejson: unknown type: %T\n", v)
 			return v, nil
 		}
 	}
