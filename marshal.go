@@ -42,7 +42,7 @@ func Marshal(in interface{}) (interface{}, error) {
 			return marshalTime(v), nil
 		case bson.RegEx:
 			return marshalRegex(v), nil
-		case string, int, int64, bool, float64, uint32:
+		case string, int, int64, bool, float64, uint8, uint32:
 			return v, nil
 		default:
 			fmt.Fprintf(os.Stderr, "mejson: unknown type: %T\n", v)
