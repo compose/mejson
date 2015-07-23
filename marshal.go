@@ -18,6 +18,9 @@ func Marshal(in interface{}) (interface{}, error) {
 	}
 
 	if reflect.TypeOf(in).Kind() == reflect.Slice {
+		if v, ok := in.([]byte); ok {
+			return marshalBinary(bson.Binary{0x00, v}), nil
+		}
 		v := reflect.ValueOf(in)
 
 		slice := make([]interface{}, v.Len())

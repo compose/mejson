@@ -33,6 +33,11 @@ func TestMarshal(t *testing.T) {
 			nil,
 		},
 		{
+			bson.Binary{Kind: 0x00, Data: []byte("52dc18556c528d7736000003")},
+			[]byte("{\"$binary\":\"NTJkYzE4NTU2YzUyOGQ3NzM2MDAwMDAz\",\"$type\":\"0\"}"),
+			nil,
+		},
+		{
 			"String",
 			[]byte("\"String\""),
 			nil,
