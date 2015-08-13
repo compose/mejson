@@ -189,6 +189,26 @@ func TestTimestamp(t *testing.T) {
 			bson.MongoTimestamp(5982128723015499777),
 			false,
 		},
+		{
+			map[string]interface{}{"$timestamp": map[string]interface{}{"t": int(1392822881), "i": int(1)}},
+			bson.MongoTimestamp(5982128723015499777),
+			true,
+		},
+		{
+			map[string]interface{}{"$timestamp": map[string]interface{}{"t": int64(1392822881), "i": int64(1)}},
+			bson.MongoTimestamp(5982128723015499777),
+			true,
+		},
+		{
+			map[string]interface{}{"$timestamp": map[string]interface{}{"t": int32(1392822881), "i": int32(1)}},
+			bson.MongoTimestamp(5982128723015499777),
+			true,
+		},
+		{
+			map[string]interface{}{"$timestamp": map[string]interface{}{"t": float64(1392822881), "i": float64(1)}},
+			bson.MongoTimestamp(5982128723015499777),
+			true,
+		},
 	}
 
 	for _, d := range data {
@@ -277,6 +297,10 @@ func TestBsonify(t *testing.T) {
 		{
 			[]byte("{\"name\":\"jp_with_date\",\"created_at\":{\"$date\":1392895436000}}"),
 			bson.M{"name": "jp_with_date", "created_at": sample_time3},
+		},
+		{
+			[]byte("{\"name\":\"jp_with_timestamp\",\"created_at\":{\"$timestamp\":{\"i\":1,\"t\":1392822881}}}"),
+			bson.M{"name": "jp_with_timestamp", "created_at": bson.MongoTimestamp(5982128723015499777)},
 		},
 		{
 			[]byte("{\"vancouver\":{\"$lt\":5}}"),
