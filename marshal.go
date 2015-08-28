@@ -43,6 +43,8 @@ func Marshal(in interface{}) (interface{}, error) {
 			return marshalObjectId(v), nil
 		case time.Time:
 			return marshalTime(v), nil
+		case bson.MongoTimestamp:
+			return marshalTimestamp(v), nil
 		case bson.RegEx:
 			return marshalRegex(v), nil
 		case string, int, int64, bool, float64, uint8, uint32:

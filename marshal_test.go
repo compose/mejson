@@ -28,6 +28,11 @@ func TestMarshal(t *testing.T) {
 			nil,
 		},
 		{
+			bson.MongoTimestamp(5982128723015499777),
+			[]byte("{\"$timestamp\":{\"i\":1,\"t\":1392822881}}"),
+			nil,
+		},
+		{
 			bson.Binary{Kind: 0x80, Data: []byte("52dc18556c528d7736000003")},
 			[]byte("{\"$binary\":\"NTJkYzE4NTU2YzUyOGQ3NzM2MDAwMDAz\",\"$type\":\"80\"}"),
 			nil,
